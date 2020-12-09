@@ -2,7 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import axios from 'axios'
 
-export default function Home({ data }) {
+export default function Home({ city, data }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -12,11 +12,14 @@ export default function Home({ data }) {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://alibrate.com">Alibrate University!</a>
+          Welcome to <a href="https://alibrate.com">Alibrate University Weather App!</a>
         </h1>
         <h2>
-          Data from API: {data.text}
+          Weather in {city}
         </h2>
+        <h3>
+          {data.main.temp}°C - Feels like: {data.main.feels_like}°C
+        </h3>
       </main>
 
       <footer className={styles.footer}>
@@ -33,10 +36,11 @@ export default function Home({ data }) {
 }
 
 export async function getServerSideProps(context) {
-  const {data} = await axios.get(`http://${process.env.API}/`)
+  const {data} = await axios.get(`http://${process.env.API}/weather?city=buenos aires`)
   console.log('data', data)
   return {
     props: {
+      city: 'Buenos Aires',
       data
     }
   }
