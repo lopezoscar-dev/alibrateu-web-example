@@ -1,5 +1,5 @@
 {
     env: {
-        API: 'internal-alibrate-frankfurt-priv-alb-1373655442.eu-central-1.elb.amazonaws.com'
+        API: 'internal-alibrate-api-alb-144124921.eu-central-1.elb.amazonaws.com'
     }
 }
